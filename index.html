@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduación de Lucero Valentina Zuñiga Soto</title>
+    <style>
+        /* Estilos generales */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #fffafb; 
+            color: #4a4a4a; 
+        }
+        
+        /* Portada principal */
+        .hero { 
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0); 
+            padding: 60px 20px; 
+            text-align: center; 
+            border-bottom: 5px solid #f06292;
+        }
+        .hero h1 { 
+            color: #d81b60; 
+            font-size: 2.8em; 
+            margin-bottom: 10px; 
+        }
+        .hero p { 
+            font-size: 1.3em; 
+            color: #555; 
+        }
+
+        /* Secciones de contenido */
+        .section { 
+            padding: 40px 20px; 
+            text-align: center; 
+            max-width: 600px; 
+            margin: auto; 
+        }
+        .section h2 {
+            color: #d81b60;
+        }
+
+        /* Contador de tiempo */
+        .countdown { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            margin-top: 20px; 
+        }
+        .time-box { 
+            background: #fff; 
+            padding: 15px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+            width: 65px; 
+        }
+        .time-box span { 
+            display: block; 
+            font-size: 1.8em; 
+            font-weight: bold; 
+            color: #f06292; 
+        }
+        .time-box small { 
+            font-size: 0.9em; 
+            color: #777; 
+            text-transform: uppercase;
+        }
+
+        /* Tabla de detalles */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td { 
+            padding: 15px; 
+            text-align: left; 
+            border-bottom: 1px solid #fce4ec;
+        }
+        th { 
+            background-color: #fce4ec; 
+            color: #d81b60; 
+            width: 30%;
+        }
+
+        /* Botones */
+        .btn { 
+            display: inline-block; 
+            padding: 15px 30px; 
+            margin-top: 20px; 
+            background-color: #d81b60; 
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 30px; 
+            font-weight: bold; 
+            box-shadow: 0 4px 6px rgba(216, 27, 96, 0.3);
+            transition: background-color 0.3s;
+        }
+        .btn:hover { 
+            background-color: #ad1457; 
+        }
+        
+        /* Botón de Música Flotante */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #f06292;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .music-btn:hover {
+            transform: scale(1.05);
+            background-color: #d81b60;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Oculto -->
+    <audio id="musicaFondo" loop>
+        <source src="Magnetic.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Botón de Música Flotante -->
+    <button id="btnMusica" class="music-btn">🎵 Reproducir Música</button>
+
+    <!-- Portada -->
+    <div class="hero">
+        <h1>¡Mi Graduación!</h1>
+        <p>Acompáñanos a celebrar este gran logro de<br><strong>Lucero Valentina Zúñiga Soto</strong></p>
+    </div>
+
+    <!-- Cuenta Regresiva -->
+    <div class="section">
+        <h2>Faltan:</h2>
+        <div class="countdown" id="countdown">
+            <div class="time-box"><span id="days">00</span><small>Días</small></div>
+            <div class="time-box"><span id="hours">00</span><small>Horas</small></div>
+            <div class="time-box"><span id="mins">00</span><small>Min</small></div>
+            <div class="time-box"><span id="secs">00</span><small>Seg</small></div>
+        </div>
+    </div>
+
+    <!-- Detalles del Evento -->
+    <div class="section">
+        <h2>Detalles de la Comida</h2>
+        <table>
+            <tr>
+                <th>Fecha</th>
+                <td>Lunes 6 De Julio De 2026</td>
+            </tr>
+            <tr>
+                <th>Hora</th>
+                <td>3:30 P.M</td>
+            </tr>
+            <tr>
+                <th>Lugar</th>
+                <td>Casa Familiar</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Ubicación -->
+    <div class="section">
+        <h2>Ubicación</h2>
+        <p>Galaxia Polaris #10, Morelia, Tarimaro</p>
+        <a href="https://maps.app.goo.gl/HLzEGWPw2VVo33xXA" class="btn" target="_blank">Abrir en Google Maps</a>
+    </div>
+
+    <!-- Confirmación -->
+    <div class="section">
+        <h2>Confirmación de Asistencia</h2>
+        <p>Por favor confirma tu asistencia antes del Jueves 2 de Julio .</p>
+        <a href="https://wa.me/4439380300?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20graduación." class="btn" target="_blank">Confirmar por WhatsApp</a>
+    </div>
+    
+    <div class="footer">
+        ¡Te esperamos con mucha emoción!
+    </div>
+
+    <!-- Scripts (Música y Contador) -->
+    <script>
+        // --- CONTROL DE MÚSICA ---
+        const miMusica = document.getElementById("musicaFondo");
+        const btnMusica = document.getElementById("btnMusica");
+        let reproduciendo = false;
+
+        btnMusica.addEventListener("click", function() {
+            if (reproduciendo) {
+                miMusica.pause();
+                btnMusica.innerText = "🎵 Reproducir Música";
+            } else {
+                miMusica.play();
+                btnMusica.innerText = "⏸ Pausar Música";
+            }
+            reproduciendo = !reproduciendo;
+        });
+
+        // --- CONTADOR DE TIEMPO ---
+        const countdownDate = new Date("2026-07-06T15:30:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "<h3 style='color:#d81b60;'>¡El gran día ha llegado!</h3>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("mins").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("secs").innerText = seconds.toString().padStart(2, '0');
+        }, 1000);
+    </script>
+</body>
+</html>
