@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduación de Lucero Valentina Zuñiga Soto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Poppins', sans-serif; background-color: #fdfaf7; color: #333; }
+        
+        /* Pantalla de Inicio (El Sobre) */
+        #pantalla-inicio {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #f8e1e7, #e0c3fc);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; text-align: center;
+        }
+        .sobre-icono { font-size: 5em; margin-bottom: 20px; }
+        .btn-abrir {
+            padding: 15px 40px; font-size: 1.2em; background: #c5a059; color: white;
+            border: none; border-radius: 50px; cursor: pointer; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-family: 'Playfair Display';
+        }
+
+        #contenido-invitacion { display: none; }
+
+        /* Estilos Elegantes */
+        .hero { 
+            padding: 60px 20px; text-align: center; background: white;
+            border-bottom: 2px solid #c5a059;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; color: #c5a059; font-size: 3em; margin: 0; }
+        .decoracion { font-size: 2em; display: block; margin-bottom: 10px; }
+        
+        .card { max-width: 500px; margin: 30px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        
+        .countdown { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .time-box { background: #fdfaf7; padding: 10px; border-radius: 8px; width: 60px; border: 1px solid #c5a059; color: #c5a059; font-weight: bold; }
+        
+        .btn-accion { 
+            display: inline-block; padding: 15px 30px; background: #c5a059; color: white; 
+            text-decoration: none; border-radius: 5px; margin-top: 20px; font-weight: bold;
+        }
+
+        #btnMusica { position: fixed; bottom: 20px; right: 20px; background: #c5a059; color: white; border: none; padding: 10px; border-radius: 50%; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <!-- Pantalla de Inicio -->
+    <div id="pantalla-inicio">
+        <div class="sobre-icono">🎓</div>
+        <h1>¡Estás invitad@!</h1>
+        <p>Acompáñanos a celebrar este logro especial</p>
+        <button id="btnAbrir" class="btn-abrir">Abrir Invitación</button>
+    </div>
+
+    <!-- Contenido -->
+    <div id="contenido-invitacion">
+        <audio id="musicaFondo" loop><source src="Magnetic.mp3" type="audio/mpeg"></audio>
+        <button id="btnMusica">🔊</button>
+
+        <div class="hero">
+            <span class="decoracion">✨</span>
+            <h1>¡Mi Graduación!</h1>
+            <h2 style="font-family:'Dancing Script'; color:#555;">Lucero Valentina Zúñiga Soto</h2>
+        </div>
+
+        <div class="card">
+            <h3>Falta muy poco para el gran día</h3>
+            <div class="countdown" id="countdown">
+                <div class="time-box"><span id="days">00</span><br><small>Días</small></div>
+                <div class="time-box"><span id="hours">00</span><br><small>Hrs</small></div>
+                <div class="time-box"><span id="mins">00</span><br><small>Min</small></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Detalles de la Comida</h3>
+            <p><strong>Fecha:</strong> Lunes 6 de Julio, 2026</p>
+            <p><strong>Hora:</strong> 3:30 P.M.</p>
+            <p><strong>Lugar:</strong> Casa Familiar</p>
+            <p><strong>Dirección:</strong> Galaxia Polaris #10, Morelia, Tarimaro</p>
+            <a href="https://maps.app.goo.gl/HLzEGWPw2VVo33xXA" class="btn-accion">📍 Abrir en Google Maps</a>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h3>Confirmación</h3>
+            <p>Por favor confirma tu asistencia antes del Jueves 2 de Julio.</p>
+            <a href="https://wa.me/4439380300?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20graduación." class="btn-accion" style="background:#555;">Confirmar por WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        const btnAbrir = document.getElementById('btnAbrir');
+        const audio = document.getElementById('musicaFondo');
+        
+        btnAbrir.onclick = () => {
+            document.getElementById('pantalla-inicio').style.display = 'none';
+            document.getElementById('contenido-invitacion').style.display = 'block';
+            audio.play();
+        };
+
+        document.getElementById('btnMusica').onclick = (e) => {
+            audio.paused ? (audio.play(), e.target.innerText='🔊') : (audio.pause(), e.target.innerText='🔇');
+        };
+
+        const countdownDate = new Date("2026-07-06T15:30:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = countdownDate - now;
+            document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+            document.getElementById("mins").innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
+        }, 1000);
+    </script>
+</body>
+</html>
