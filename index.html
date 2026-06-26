@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduación de Lucero Valentina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: #fff5f7; color: #444; }
+        
+        /* Pantalla de inicio */
+        #pantalla-inicio {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 10000; text-align: center; padding: 20px;
+        }
+        .btn-abrir {
+            padding: 20px 40px; font-size: 1.5em; background: #d81b60; color: white;
+            border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        #contenido-invitacion { display: none; }
+        .hero { background: linear-gradient(135deg, #fce4ec, #f8bbd0); padding: 50px 20px; text-align: center; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; }
+        .hero h1 { font-family: 'Dancing Script'; color: #d81b60; font-size: 3em; margin: 0; }
+        .section { padding: 30px 20px; text-align: center; max-width: 500px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        .time-box { background: #fce4ec; padding: 10px; border-radius: 10px; width: 50px; color: #d81b60; font-weight: bold; }
+        .btn { display: inline-block; padding: 12px 25px; background: #d81b60; color: white; text-decoration: none; border-radius: 30px; font-weight: 600; margin-top: 10px; }
+        #btnMusica { position: fixed; bottom: 20px; right: 20px; border-radius: 50%; padding: 15px; background: #d81b60; color: white; border: none; cursor: pointer; z-index: 9999; }
+    </style>
+</head>
+<body>
+
+    <div id="pantalla-inicio">
+        <h1>¡Estás invitad@!</h1>
+        <p>Presiona para abrir la invitación</p>
+        <button id="btnAbrir" class="btn-abrir">💌 Abrir</button>
+    </div>
+
+    <div id="contenido-invitacion">
+        <audio id="musicaFondo" loop><source src="Magnetic.mp3" type="audio/mpeg"></audio>
+        <button id="btnMusica">🔊</button>
+
+        <div class="hero">
+            <h1>¡Mi Graduación!</h1>
+            <p>Acompáñanos a celebrar el logro de:</p>
+            <h2 style="font-family:'Dancing Script'; font-size:2em;">Lucero Valentina Zúñiga Soto</h2>
+        </div>
+
+        <div class="section">
+            <div class="card">
+                <h2>Falta muy poco...</h2>
+                <div class="countdown" id="countdown">
+                    <div class="time-box"><span id="days">00</span><br>Días</div>
+                    <div class="time-box"><span id="hours">00</span><br>Hrs</div>
+                    <div class="time-box"><span id="mins">00</span><br>Min</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Detalles de la Comida</h2>
+                <p><strong>Fecha:</strong> Lunes 6 de Julio, 2026</p>
+                <p><strong>Hora:</strong> 3:30 P.M.</p>
+                <p><strong>Lugar:</strong> Casa Familiar</p>
+                <p><strong>Dirección:</strong> Galaxia Polaris #10, Morelia, Tarimaro</p>
+                <a href="https://maps.app.goo.gl/HLzEGWPw2VVo33xXA" class="btn">📍 Abrir en Google Maps</a>
+            </div>
+
+            <div class="card">
+                <h2>Confirmación</h2>
+                <p>Por favor confirma antes del 2 de Julio.</p>
+                <a href="https://wa.me/4439380300?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20graduación." class="btn">Confirmar por WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btnAbrir = document.getElementById("btnAbrir");
+        const pantallaInicio = document.getElementById("pantalla-inicio");
+        const contenidoInvitacion = document.getElementById("contenido-invitacion");
+        const audio = document.getElementById("musicaFondo");
+        const btnMusica = document.getElementById("btnMusica");
+
+        btnAbrir.addEventListener("click", () => {
+            pantallaInicio.style.display = "none";
+            contenidoInvitacion.style.display = "block";
+            audio.play();
+        });
+
+        btnMusica.onclick = () => {
+            audio.paused ? (audio.play(), btnMusica.innerText="🔊") : (audio.pause(), btnMusica.innerText="🔇");
+        };
+
+        const countdownDate = new Date("2026-07-06T15:30:00").getTime();
+        setInterval(() => {
+            const diff = countdownDate - new Date().getTime();
+            document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+            document.getElementById("mins").innerText = Math.floor((diff % (1000*60*60)) / (1000*60));
+        }, 1000);
+    </script>
+</body>
+</html>
